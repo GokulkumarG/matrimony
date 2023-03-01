@@ -3,6 +3,9 @@
 - Install Django
  $ pip install django
  
+# My Project(folder) Name is main_part
+# My App Name is sub_part
+
  - Install pillow(using imagefield)
  $ pip install pillow
  
