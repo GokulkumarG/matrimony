@@ -1,0 +1,546 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="{% static 'landing/img/fav2.jpg' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'dashboard/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'dashboard/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'dashboard/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'dashboard/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid position-relative d-flex bg-white bg-opacity-50">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-success position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-warning" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+        
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-0 pb-3 bg-opacity-75" style="background-color:#34AD54 !important;">
+            <nav class="navbar bg-success navbar-dark" style="background-color:#34AD54 !important;">
+               <!-- <a href="index.html" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
+           <h1 class="m-0 text-white"><span class="text-warning">GK</span>men's<span class="text-primary"></span></h1>
+            </a>-->
+                <div class="d-flex align-items-center ms-4 mb-4 mt-3">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="{{logger_data.file.url}}" alt="" style="width: 50px; height: 50px;">
+                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                    </div>
+                    <div class="ms-3">
+                        
+                        <h6 class="mb-0">{{logger_data.first_name}} {{logger_data.last_name}}</h6>
+                        
+                        <span class="text-warning" style="color:#FF9933 !important">{{logger_data.gender}}</span>
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a class="nav-item nav-link text-white mb-2"><i class="fa fa-tachometer-alt me-2 text-white"></i>Dashboard</a>
+                    <!--<div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2 text-white"></i>Employees</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="button.html" class="dropdown-item text-white">Manager</a>
+                            <a href="typography.html" class="dropdown-item text-white">Asst_Manager</a>
+                            <a href="element.html" class="dropdown-item text-white">Helper</a>
+                        </div>
+                    </div>-->
+                    <a href="{% url 'index' %}" class="nav-item nav-link text-white  mb-2"><i class="fa fa-th me-2 text-white"></i>Home</a>
+                    <a href="/profile/{{logger_data.id}}" class="nav-item nav-link text-white mb-2"><i class="fa fa-keyboard me-2 text-white"></i>Profile</a>
+                    <!--<a href="table.html" class="nav-item nav-link text-white"><i class="fa fa-table me-2 text-white"></i></a>-->
+                    <a href="/register" class="nav-item nav-link text-white  mb-2"><i class="fa fa-chart-bar me-2 text-white"></i>Register</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle text-white  mb-2" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2 text-white"></i>Pages</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="/login" class="dropdown-item text-white  mb-2">Log in</a>
+                            <a href="{% url 'index' %}" class="dropdown-item text-white mb-2">Log Out</a>
+                            <a href="404.html" class="dropdown-item text-white  mb-2">404 Error</a>
+                            <a href="blank.html" class="dropdown-item text-white mb-2">Blank Page</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand navbar-dark sticky-top px-4 py-0" style="background-color:#34AD54 !important;">
+                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler bg-white flex-shrink-0">
+                    <i class="fa fa-bars text-dark"></i>
+                </a>
+                <form class="d-none form d-md-flex ms-4">
+                    <input class="form-control bg-white border-0" type="search" placeholder="Search">
+                </form>
+                <div class="navbar-nav align-items-center ms-auto">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-envelope  bg-white me-lg-2"></i>
+                            <span class="d-none text-white d-lg-inline-flex">Message</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <!--<img class="rounded-circle" src="../static/dashboard/img/user.jpg" alt="" style="width: 40px; height: 40px;">-->
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Gokul send you a message</h6>
+                                        <small>30 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                <!--<img class="rounded-circle" src="../static/dashboard/img/user.jpg" alt="" style="width: 40px; height: 40px;">-->
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Vishnu send you a message</h6>
+                                        <small>20 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                <!--<img class="rounded-circle" src="../static/dashboard/img/user.jpg" alt="" style="width: 40px; height: 40px;">-->
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Dinesh send you a message</h6>
+                                        <small>10 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">See all message</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-bell bg-white me-lg-2"></i>
+                            <span class="d-none text-white d-lg-inline-flex">Notificatin</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Profile updated</h6>
+                                <small>20 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">New user added</h6>
+                                <small>10 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Password changed</h6>
+                                <small>5 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">See all notifications</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="rounded-circle me-lg-2" src="{{logger_data.file.url}}" alt="" style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex text-white ">{{logger_data.first_name}} {{logger_data.last_name}}</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="/profile/{{logger_data.id}}" class="dropdown-item text-white">My Profile</a>
+                            <a href="#" class="dropdown-item text-white">Settings</a>
+                            <a href="{% url 'index' %}" class="dropdown-item text-white">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- Navbar End -->
+
+
+            <!-- Sale & Revenue Start -->
+            <!--<div class="card" style="width: 18rem;">
+                <img src="../static/landing/img/fav2.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>-->
+              <h2><marquee direction="right">Choose Your Life Partner</marquee></h2>
+            <div class="container-fluid  px-4 bg-success" style="background-color:#FF9933 !important;">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-12 ">
+                        <div class="bg-success rounded d-flex align-items-center justify-content-center p-2 border border-2 border-block">
+                            <!--<i class="fa fa-chart-line fa-3x text-warning"></i>-->
+                            <div class="ms-3 text-dark bg-white rounded rounded-3 p-3 ">
+                                
+                                <h6 class="mb-2 text-dark">Gender:   {{msg}}</h6>
+                                <h6 class="mb-0 text-dark">Total:             {{count}}</h6>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="col-sm-6 col-xl-3">
+                        <div class="bg-white rounded d-flex align-items-center justify-content-between p-4 border border-2 border-block">
+                            <i class="fa fa-chart-bar fa-3x text-warning"></i>
+                            <div class="ms-3 text-dark">
+                                <p class="mb-2 text-dark ">Month Sale</p>
+                                <h6 class="mb-0 text-dark">10L</h6>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!--<div class="col-sm-6 col-xl-3">
+                        <div class="bg-white rounded d-flex align-items-center justify-content-between p-4 border border-2 border-block ">
+                            <i class="fa fa-chart-area fa-3x text-warning"></i>
+                            <div class="ms-3 text-dark">
+                                
+                                
+                                <p class="mb-2 text-dark ">asdfsd</p>
+                                <h6 class="mb-0 text-dark">adfafd</h6>
+                                
+                            </div>
+                        </div>
+                    </div-->
+                   <!-- <div class="col-sm-6 col-xl- ">
+                        <div class="bg-white rounded d-flex align-items-center justify-content-between p-4 border border-2 border-block">
+                            <i class="fa fa-chart-pie fa-3x text-warning "></i>
+                            <div class="ms-3 text-dark">
+                                
+                                
+                                {% for i in output %}
+                                
+                                <p class="mb-2 text-dark ">{{i.gender}}</p>
+                                <h6 class="mb-0 text-dark">{{i.first_name}}</h6>
+                                
+                                {% endfor %}
+                               
+                                
+
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+            <!-- Sale & Revenue End -->
+
+
+            <!-- Sales Chart Start -->
+            <div class="container-fluid pt-4 px-5">
+                <div class="row g-5">
+                    {% for i in main %}
+                    <div class="col-sm-12 col-xl-4">
+                        <div class="card rounded rounded-4" style="width: 16rem; height: auto">
+                            
+                            <img src="{{ i.file.url }}" class="img-thumbnail" alt="image" style="height:400px !important">
+                            
+                            <div class="card-body bg-success border border-2 border-black rounded rounded-4 " style="line-height:10px !important" >
+                                <h4 style="color:black;text-align:center;background-color:white;">{{i.first_name}} {{i.last_name}}</h4>
+                              <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                         --><h6 style="color:black;">Gender:{{i.gender}}</h6>
+                            <h6 style="color:black;">DOB:{{i.date_birth}}</h6>
+                            <h6 style="color:black;">Study:{{i.study}}</h6>
+                            <h6 style="color:black;">Work:{{i.designation}}</h6>
+                            <h6 style="color:black;">Salary:{{i.salary}}</h6>
+                            <h6 style="color:black;">Contact:{{i.phone_number}}</h6>
+                            
+                            </div>
+                          </div>
+                    </div>
+                    {% endfor %}
+                    <!--<div class="col-sm-12 col-xl-4">
+                        <div class="card" style="width: 16rem; height: auto">
+                            <img src="{% static 'landing/img/f.jpg' %}" class="img-thumbnail" alt="image" style="height:400px">
+                            <div class="card-body">
+                                <hr>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <h5 style="color:black;">gokulkumar</h5>
+                            <h6 style="color:black;">age</h6>
+                            <h3 style="color:black;">work</h3>
+                            <h4 style="color:black;">contact</h4>
+                            
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-4">
+                        <div class="card" style="width: 16rem; height: auto">
+                            <img src="{% static 'landing/img/mar.webp' %}" class="img-thumbnail" alt="image" style="height:400px">
+                            <div class="card-body">
+                                <hr>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                             <h5 style="color:black;">gokulkumar</h5>
+                            <h6 style="color:black;">age</h6>
+                            <h3 style="color:black;">work</h3>
+                            <h4 style="color:black;">contact</h4>
+                            
+                            </div>
+                          </div>
+                    </div>-->
+                </div>
+            </div>
+            <!-- Sales Chart End -->
+
+
+            <!-- Recent Sales Start -->
+            <!--<div class="container-fluid pt-4 px-4">
+                <div class="bg-white text-center rounded p-4 border border-2 border-block">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0 text-dark">Registered</h6>
+                        <a href="form.html" class="btn btn-success">Add_Customer</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-dark bg-info">
+                                    <th scope="col">ID</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Email Address</th>
+                                    <th scope="col">Phone Number</th>
+                                    <th scope="col">Promo Code</th>
+                                    <th scope="col">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-dark">
+                                    <td>001</td>
+                                    <td>Gokul</td>
+                                    <td>Kumar</td>
+                                    <td>gokulkumar@gmail.com</td>
+                                    <td>9043331384</td>
+                                    <td>CODEgk50</td>
+                                    <td><a class="btn btn-sm btn-success" href="">Delete</a></td>
+                                </tr>
+                                <tr class="text-dark">
+                                    <td>002</td>
+                                    <td>Vishnu</td>
+                                    <td>Kumar</td>
+                                    <td>vishnu456@gmail.com</td>
+                                    <td>9894327947</td>
+                                    <td>akgCod34</td>
+                                    <td><a class="btn btn-sm btn-success" href="">Delete</a></td>
+                                </tr>
+                                <tr class="text-dark">
+                                    <td>003</td>
+                                    <td>Dhanush</td>
+                                    <td>Kumar</td>
+                                    <td>dhanush461@gmail.com</td>
+                                    <td>9073488744</td>
+                                    <td>GLJKm1734</td>
+                                    <td><a class="btn btn-sm btn-success" href="">Delete</a></td>
+                                </tr>
+                                <tr class="text-dark">
+                                    <td>004</td>
+                                    <td>Dinesh</td>
+                                    <td>Kumar</td>
+                                    <td>dineshkumar49@gmail.com</td>
+                                    <td>9785552344</td>
+                                    <td>gkj564dk</td>
+                                    <td><a class="btn btn-sm btn-success" href="">Delete</a></td>
+                                </tr>
+                                <tr class="text-dark">
+                                    <td>005</td>
+                                    <td>Vignesh</td>
+                                    <td>Waran</td>
+                                    <td>Vigneshwaran@gmail.com</td>
+                                    <td>8049545414</td>
+                                    <td>dak454dd</td>
+                                    <td><a class="btn btn-sm btn-success" href="">Delete</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>-->
+            <!-- Recent Sales End -->
+
+
+            <!-- Widgets Start -->
+            <!--<div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-md-6 col-xl-4">
+                        <div class="h-100 bg-white rounded p-4 border border-2 border-dark">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h6 class="mb-0 text-dark">Messages</h6>
+                                <a href=""class="btn btn-success">Show All</a>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-3">
+                                <img class="rounded-circle flex-shrink-0" src="../static/dashboard/img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-0 text-dark">Jhon</h6>
+                                        <small>30 minutes ago</small>
+                                    </div>
+                                    <span>Short message goes here...</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-3">
+                                <img class="rounded-circle flex-shrink-0" src="../static/dashboard/img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-0 text-dark">gokul</h6>
+                                        <small>20 minutes ago</small>
+                                    </div>
+                                    <span>Short message goes here...</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-3">
+                                <img class="rounded-circle flex-shrink-0" src="../static/dashboard/img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-0 text-dark">dinesh</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                    <span>Short message goes here...</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center pt-3">
+                                <img class="rounded-circle flex-shrink-0" src="../static/dashboard/img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-0 text-dark">Jhon Doe</h6>
+                                        <small>10 minutes ago</small>
+                                    </div>
+                                    <span>Short message goes here...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-xl-4">
+                        <div class="h-100 bg-white rounded p-4 border border-2  border-dark">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0 text-dark ">Calender</h6>
+                                <a href="" class="btn btn-success">Show All</a>
+                            </div>
+                            <div id="calender" class="border border-2 border-dark rounded rounded-3"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-xl-4">
+                        <div class="h-100 bg-white rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0 text-dark">To Do List</h6>
+                                <a href="" class="btn btn-success">Show All</a>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <input class="form-control bg-warning border-2 text-white" type="text" placeholder="Enter task" >
+                                <button type="button" class="btn btn-info ms-2">Add</button>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-2">
+                                <input class="form-check-input m-0" type="checkbox">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <span>Short task goes here...</span>
+                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-2">
+                                <input class="form-check-input m-0" type="checkbox">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <span>Short task goes here...</span>
+                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-2">
+                                <input class="form-check-input m-0" type="checkbox" checked>
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <span><del>Short task goes here...</del></span>
+                                        <button class="btn btn-sm text-primary"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-2">
+                                <input class="form-check-input m-0" type="checkbox">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <span>Short task goes here...</span>
+                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center pt-2">
+                                <input class="form-check-input m-0" type="checkbox">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <span>Short task goes here...</span>
+                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <!-- Widgets End -->
+
+
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4" >
+                <div class="bg-secondary rounded-top p-4" style="background-color:#34AD54 !important">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center  text-white text-sm-start">
+                            &copy; <a href="#" class="text-warning" style="color:#FF9933 !important"> gkmenswear</a>, All Right Reserved | 2023 
+                        </div>
+                        
+                        <div class="col-12 col-sm-6 text-center text-white text-sm-end">
+                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                            Designed By <a href="https://htmlcodex.com" class="text-warning" style="color:#FF9933 !important">gokulkumar</a>
+                           <!-- <br>Distributed By: <a href="https://themewagon.com" target="_blank">ThemeWagon</a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <!--<a href="" class="btn btn-lg btn-warning btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        -->
+        </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'dashboard/lib/chart/chart.min.js' %}"></script>
+    <script src="{% static 'dashboard/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'dashboard/lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'dashboard/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'dashboard/lib/tempusdominus/js/moment.min.js' %}"></script>
+    <script src="{% static 'dashboard/lib/tempusdominus/js/moment-timezone.min.js' %}"></script>
+    <script src=".{% static 'dashboard/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'dashboard/js/main.js' %}"></script>
+</body>
+
+</html>
