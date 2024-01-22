@@ -1,14 +1,17 @@
 # matrimony
 # Installation
+- Install Python
+  $ **(python version 3.6.8)**
 - Install Django
  $ pip install django
- (django version 3.2.20)
- (python version 3.6.8)
+ $ **(django version 3.2.20)**
+
 # My Project(folder) Name is main_part
 # My App Name is sub_part
 
  - Install pillow(using imagefield)
- $ pip install pillow
+ $ pip install pillow (pillow version 8.4.0)
+ $ To check which version of the Python library pillow is installed, run **pip show pillow** or **pip3 show pillow**
  
 
 # Running
