@@ -12,7 +12,9 @@
  - Install pillow(using imagefield)
  $ pip install pillow (pillow version 8.4.0)
  $ To check which version of the Python library pillow is installed, run **pip show pillow** or **pip3 show pillow**
- 
+
+ # database
+ $ mysqlite3
 
 # Running
 - cd project-foldername
