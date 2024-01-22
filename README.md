@@ -2,7 +2,8 @@
 # Installation
 - Install Django
  $ pip install django
- 
+ (django version 3.2.20)
+ (python version 3.6.8)
 # My Project(folder) Name is main_part
 # My App Name is sub_part
 
